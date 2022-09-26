@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/dashboard/css/styles.css' %}" />
+{% endblock styles %}
+
+{% block title %}
+Inicio | AI CRYPT
+{% endblock title %}
+
+
+{% block body %}
+<div class="container-xxl  ">
+    <header class="row head sticky-top ">
+        <div class=" col-1 col-sm-1 col-md-1 d-sm-block d-md-block d-lg-none pt-1 ps-0 ps-sm-2 mt-1   text-start ms-2">
+            <button id="menud " class="navbar-toggler btn_collap menu-options" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <svg id="list" xmlns="http://www.w3.org/2000/svg" width="35" height="43" fill="currentColor"
+                    class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+
+            </button>
+
+        </div>
+        <div class="col-10 p-0 mt-2 d-sm-block d-md-block d-lg-none text-center ">
+            <a href="{% url 'country_vaccinations:by-country' %}" class="text-white fs-1 fw-normal">COVID-19 World Vaccination
+                Progress</a>
+        </div>
+    </header>
+    <div class="row flex-nowrap ">
+        <!-- <div class="" ></div> -->
+        <div
+            class="navbar-expand-lg col-auto col-md-0 col-lg-auto col-xl-auto col-xxl-auto px-0 px-md-0  px-lg-0  color-sidebar">
+            <nav class="collapse navbar-collapse sidebar " id="collapsibleNavbar">
+                <div class=" d-flex flex-column align-items-center  pt-4 min-vh-100">
+
+                    <div class="text-center ">
+                        <a href="{% url 'country_vaccinations:by-country' %}" style="width: 10rem;"
+                            class=" d-flex align-items-center pb-3 pb-sm-3 pb-md-3 pb-lg-4 pb-xl-4 pb-xxl-4 me-md-auto  text-decoration-none flex-column text-color ">
+                            <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="Covid 19"
+                                class="svg_bot d-lg-none d-xl-none" src="{% static 'img/png/virus.png' %}"
+                                alt="icono_bot" width="80" height="80">
+                            <h1 class="fs-4 d-none d-sm-none d-md-none d-lg-block text-color">COVID-19 World
+                                Vaccination Progress
+                            </h1>
+                            <p class="fw-light">v0.2</p>
+                        </a>
+                    </div>
+                    <!-- <div class="d-flex align-items-center text-center pb-1 pb-md-4 pb-lg-5 pb-xl-5 pb-xxl-5  ps-2 pe-2">
+                        <img src="{% static 'img/png/virus.png' %}" alt="" width="100">
+                    </div> -->
+
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-lg-center  text-center mt-4 mt-md-1"
+                        id="menu">
+                        <li class="nav-item mb-4 mt-0  nav-item-test">
+                            <a data-bs-toggle="tooltip" data-bs-placement="right" title="By country"
+                                href="{% url 'country_vaccinations:by-country' %}"
+                                class=" p-0 m-0 nav-link align-middle px-0 options {% block state_bc %}{% endblock state_bc %}">
+                                <img src="{% static 'img/png/earth.png' %}" alt="" width="60">
+
+                                <!-- <p class="ms-2 fs-5 ">Inicio</p> -->
+                            </a>
+                        </li>
+
+                        <li class="nav-item mb-4 mt-1 ">
+                            <a data-bs-toggle="tooltip" data-bs-placement="right" title="By manufacturer"
+                                href="{% url  'vaccinations_by_manufacturer:by-manufacturer' %}"
+                                class=" p-0 m-0 nav-link align-middle px-0 options {% block state_bm %}{% endblock state_bm %}">
+                                <img src="{% static 'img/png/vaccine.png' %}" alt="" width="60">
+
+                                <!-- <p class="ms-2 fs-5 ">Inicio</p> -->
+                            </a>
+                        </li>
+                        <li class="nav-item mb-4 mt-1 ">
+                            <a data-bs-toggle="tooltip" data-bs-placement="right" title="Logout"
+                                href="{% url  'access:logout' %}" class=" p-0 m-0 nav-link align-middle px-0 options">
+                                <img src="{% static 'img/png/logout.png' %}" alt="" width="60">
+
+                                <!-- <p class="ms-2 fs-5 ">Inicio</p> -->
+                            </a>
+                        </li>
+
+                    </ul>
+                    <div class=" pb-2">
+                        <div class="dropdown  user text-center d-flex flex-column mt-5 by p-1 pe-2">
+                            <span class=" ">Developed By</span>
+                            <hr class="dropdown-divider pb-0">
+                            <span> </span>
+                            <span class="">Marcos Montes</span>
+                            <hr class="dropdown-divider pb-0">
+
+                            <span class=" ">© 2022</span>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- <div class="col  pt-0 pb-0  bg-content mt-1 mb-1 me-0 me-md-3 mb-md-3 ms-md-2 mt-md-3 " > -->
+        <div class="col  pt-0 pb-0 mt-1 mb-1 me-0 me-2 ms-2 me-md-0 mb-md-0 ms-md-0 mt-md-3 ">
+            <div class="container-fluid ps-2 pe-2 ps-md-0 pe-md-2 pt-md-0 ">
+                <!-- <div class="col  content-border pt-1 pb-1 pt-lg-2  pb-lg-2 ">
+            <div class="container-fluid ps-1 pe-1 ps-lg-4 pe-lg-4 pt-lg-1 bg-content "> -->
+                {% block content %}
+
+
+
+
+                {% endblock content %}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

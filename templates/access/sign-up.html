@@ -1,0 +1,98 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/access/css/styles.css' %}" />
+{% endblock styles %}
+
+
+{% block title %}
+sign in | COVID-19 World Vaccination Progress
+{% endblock title %}
+
+
+{% block body %}
+<div class="bg-homepage">
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-12 text-center text-lg-start text-xl-start  mb-4">
+                    <h1 class="text-white fs-4 text-center"><img class="mt-sm-2 mb-sm-2" src="{% static 'img/png/virus.png' %}" alt="icono_virus"
+                            width="45">COVID-19 World Vaccination Progress</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container  ">
+        <div class="row justify-content-md-center align-items-center">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-6  ">
+                <div class="">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {{ message.tags }} ms-5 me-5  mt-3 text-center fs-4  " id="msg" role="alert">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class="text-center pt-3 text-white">
+                        <h2 class="">Sign up</h2>
+                    </div>
+
+                    <div class=" ps-5 pe-5 pb-0 mt-5">
+                        <form method="post">{% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="mb-3 ps-3 pe-3">
+                                <label for="InputUser" class="form-label  label-acceso m-0">Username</label>
+                                {{form.username}}
+                                <div class="text-start">
+                                    <span class="errorlist ">{{form.username.errors}}</span>
+                                </div>
+
+                            </div>
+                            <div class="mb-1 ps-3 pe-3">
+                                <label for="InputPassword" class="form-label label-acceso m-0">Password</label>
+                                {{form.password}}
+                                <div class="text-start">
+                                    <span class="errorlist ">{{form.password.errors}}</span>
+                                </div>
+          
+                            </div>
+                            <div class="mb-5 mt-3 text-start text-white ms-3 me-3 form-check">
+                                {{form.isAdmin}}
+                                <div class="text-start">
+                                    <span class="errorlist ">{{form.isAdmin.errors}}</span>
+                                </div>
+           
+                                <label class="form-check-label fs-7" for="Check">Sign up as admin
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-center ">
+                                <button type="submit" class="btn btn-access shadow-none">Sign up</button>
+
+                            </div>
+                            <div class="text-center text-white mt-4">
+                                <p>Already have an account?<a href="{% url 'access:login' %}" class="">Sign in</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+{% endblock body %}
+
+{% block moreScripts %}
+<script>
+
+    if (window.history.replaceState) {
+
+        window.history.replaceState(null, null, window.location.href)
+
+    }
+</script>
+{% endblock moreScripts %}

@@ -1,0 +1,62 @@
+from django.urls import path
+from . import views
+
+app_name = "api"
+urlpatterns = [
+    path(
+        "vaccinations-by-country/",
+        views.CountryVaccinationsListAPIView.as_view(),
+        name="",
+    ),
+    path(
+        "vaccinations-by-country/<pk>/",
+        views.CountryVaccinationsRetrieveAPIView.as_view(),
+        name="",
+    ),
+    path(
+        "vaccinations-by-country/iso-code/<iso_code_pk>/",
+        views.VaccinationsByIsoCodeListAPIView.as_view(),
+        name="",
+    ),
+    path(
+        "vaccinations-by-country/date/<date_pk>/",
+        views.VaccinationsByDateListAPIView.as_view(),
+        name="",
+    ),
+    path(
+        "vaccinations-by-country/iso-code-date/<iso_code_pk>/<date_pk>/",
+        views.VaccinationsByIsoCodeAndDateListAPIView.as_view(),
+        name="",
+    ),
+    ###
+    path(
+        "vaccinations-by-manufacturer/",
+        views.VaccinationsManufacturerListAPIView.as_view(),
+        name="",
+    ),
+    path(
+        "vaccinations-by-manufacturer/<pk>/",
+        views.VaccinationsManufacturerRetrieveAPIView.as_view(),
+        name="",
+    ),
+    path(
+        "vaccinations-by-manufacturer/location/<location_pk>/",
+        views.VaccinationsByLocationListAPIView.as_view(),
+        name="",
+    ),
+    path(
+        "vaccinations-by-manufacturer/date/<date_pk>/",
+        views.VaccinationsBymDateListAPIView.as_view(),
+        name="",
+    ),
+    path(
+        "vaccinations-by-manufacturer/vaccine/<vaccine_pk>/",
+        views.VaccinationsByVaccineListAPIView.as_view(),
+        name="",
+    ),
+    path(
+        "vaccinations-by-manufacturer/location-date-vaccine/<location_pk>/<date_pk>/<vaccine_pk>/",
+        views.VaccinationsBylocationDateVaccineListAPIView.as_view(),
+        name="",
+    ),
+]

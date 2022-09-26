@@ -1,0 +1,84 @@
+{% extends '../dashboard.html' %}
+{% load static %}
+
+
+{% block title %}
+Vaccinations by manufacturer | COVID-19 World Vaccination Progress
+{% endblock title %}
+
+
+{% block content %}
+<div class=" row mt-2 ">
+    <div class="col-12 bg-cards border border-primary mb-2">
+        <form method="GET" action="">
+            <input class="form-control form-control-lg  mb-2" type="text" name="location" placeholder="Location"
+                aria-label="iso code">
+            <input class="form-control form-control-lg mb-2" type="text" name="date" placeholder="Date"
+                aria-label="date ">
+            <input class="form-control form-control-lg mb-2" type="text" name="vaccine" placeholder="Vaccine"
+                aria-label="date ">
+            <button class="btn btn-filter" type="submit" role="button">filter </button>
+        </form>
+    </div>
+
+    <div id="" class="col-12 p-2 bg-cards border border-primary mb-2">
+        <div class="table-responsive text-nowrap text-center w-100">
+            <table class="table text-white">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Vaccine</th>
+                        <th scope="col">Total vaccinations</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    {% for m in bymanufacturer %}
+                    <tr>
+                        <th scope="row">{{m.id}}</th>
+                        <th scope="row">{{m.location}}</th>
+                        <th scope="row">{{m.date}}</th>
+                        <th scope="row">{{m.vaccine}}</th>
+                        <th scope="row">{{m.total_vaccinations}}</th>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            {% if is_paginated %}
+            <!--     {{is_paginated}} -->
+            <ul class="pagination pagination-sm d-flex justify-content-center mt-3 pagination-position ">
+                {% if page_obj.has_previous %}
+                <li class="page-item " aria-current="page"><a class="page-link"
+                        href="?{% if location %}location={{location}}&{% endif %}{% if date %}date={{date}}&{% endif %}{% if vaccine %}vaccine={{vaccine}}&{% endif %}page={{ page_obj.previous_page_number }}">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+
+                {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+                {% elif i > page_obj.number|add:'-10' and i < page_obj.number|add:'10' %} <li class="page-item "><a
+                        class="page-link"
+                        href="?{% if location %}location={{location}}&{% endif %}{% if date %}date={{date}}&{% endif %}{% if vaccine %}vaccine={{vaccine}}&{% endif %}page={{ i }}">{{i}}</a>
+                    </li>
+
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link"
+                            href="?{% if location %}location={{location}}&{% endif %}{% if date %}date={{date}}&{% endif %}{% if vaccine %}vaccine={{vaccine}}&{% endif %}page={{ page_obj.next_page_number }}">&raquo;</a>
+                    </li>
+                    {% else %}
+                    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                    {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

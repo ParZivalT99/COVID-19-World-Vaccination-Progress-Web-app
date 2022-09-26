@@ -1,0 +1,111 @@
+{% extends '../dashboard.html' %}
+{% load static %}
+
+
+{% block title %}
+Vaccinations by country | COVID-19 World Vaccination Progress
+{% endblock title %}
+
+
+{% block content %}
+<div class=" row mt-2 ">
+    <div class="col-12 bg-cards border border-primary mb-2">
+        <form method="GET" action="">
+            <input class="form-control form-control-lg  mb-2" type="text" name="iso_code" placeholder="ISO CODE"
+                aria-label="iso code">
+            <input class="form-control form-control-lg mb-2" type="text" name="date" placeholder="Date" aria-label="date ">
+
+            <button class="border btn btn-filter" type="submit" role="button">filter </button>
+        </form>
+    </div>
+
+    <div id="" class="col-12 p-2 bg-cards border border-primary mb-2">
+        <div class="table-responsive text-nowrap text-center w-100">
+            <table class="table text-white">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Iso code</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Total vaccinations</th>
+                        <th scope="col">People vaccinated</th>
+                        <th scope="col">People fully vaccinated</th>
+                        <th scope="col">Daily vaccinations raw</th>
+                        <th scope="col">Daily vaccinations</th>
+                        <th scope="col">Total vaccinations per hundred</th>
+                        <th scope="col">People vaccinated per hundred</th>
+                        <th scope="col">People fully vaccinated per hundred</th>
+                        <th scope="col">Daily vaccinations per million</th>
+                        <th scope="col">Vaccines</th>
+                        <th scope="col">Source name</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    {% for c in country %}
+
+
+                    <tr>
+                        <th scope="row">{{c.id}}</th>
+                        <th scope="row">{{c.country}}</th>
+                        <th scope="row">{{c.iso_code}}</th>
+                        <th scope="row">{{c.date}}</th>
+                        <th scope="row">{{c.total_vaccinations}}</th>
+                        <th scope="row">{{c.people_vaccinated}}</th>
+                        <th scope="row">{{c.people_fully_vaccinated}}</th>
+                        <th scope="row">{{c.daily_vaccinations_raw}}</th>
+                        <th scope="row">{{c.daily_vaccinations}}</th>
+                        <th scope="row">{{c.total_vaccinations_per_hundred}}</th>
+                        <th scope="row">{{c.people_vaccinated_per_hundred}}</th>
+                        <th scope="row">{{c.people_fully_vaccinated_per_hundred}}</th>
+                        <th scope="row">{{c.daily_vaccinations_per_million}}</th>
+                        <th scope="row">{{c.vaccines}}</th>
+                        <th scope="row">{{c.source_name}}</th>
+
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            {% if is_paginated %}
+            <!--     {{is_paginated}} -->
+            <ul class="pagination pagination-sm d-flex justify-content-center mt-3 pagination-position ">
+                {% if page_obj.has_previous %}
+                <li class="page-item " aria-current="page"><a class="page-link"
+                        href="?{% if iso_code %}iso_code={{iso_code}}&{% endif %}{% if date %}date={{date}}&{% endif %}page={{ page_obj.previous_page_number }}">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+
+                {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+                {% elif i > page_obj.number|add:'-10' and i < page_obj.number|add:'10' %} <li class="page-item "><a
+                        class="page-link"
+                        href="?{% if iso_code %}iso_code={{iso_code}}&{% endif %}{% if date %}date={{date}}&{% endif %}page={{ i }}">{{i}}</a>
+                    </li>
+
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link"
+                            href="?{% if iso_code %}iso_code={{iso_code}}&{% endif %}{% if date %}date={{date}}&{% endif %}page={{ page_obj.next_page_number }}">&raquo;</a>
+                    </li>
+                    {% else %}
+                    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                    {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block moreScripts_2 %}
+
+{% endblock moreScripts_2 %}

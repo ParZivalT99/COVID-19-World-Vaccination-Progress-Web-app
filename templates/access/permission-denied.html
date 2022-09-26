@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/access/css/styles.css' %}" />
+{% endblock styles %}
+
+
+{% block title %}
+PERMISSION DENIED | COVID-19 World Vaccination Progress
+{% endblock title %}
+
+{% block body %}
+
+<section class="container bg-homepage text-white mt-4">
+    <div class="row text-center text-white mt-2">
+        <div class="col">
+            <h4 class="fs-1">PERMISSION DENIED</h4>
+            <p class="fs-3 mb-3">You must be an ADMIN user to view this page.</p>
+            <div class="mb-5">
+                <button class=" btn btn-access shadow-none" onclick="window.history.go(-1); return false;">Go
+                    back</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}
