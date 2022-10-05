@@ -1,6 +1,6 @@
 # COVID-19 World Vaccination Progress Web app
 
-Aplicación web sobre el progreso de la vacunación en el mundo contra el COVID-19
+Aplicación web y API REST con autenticacion sobre el progreso de la vacunación en el mundo contra el COVID-19
 
 > Fuente de los [dataset](https://www.kaggle.com/datasets/gpreda/covid-world-vaccination-progress?resource=download&select=country_vaccinations_by_manufacturer.csv)
 
@@ -22,8 +22,8 @@ Aplicación web sobre el progreso de la vacunación en el mundo contra el COVID-
   >>>cl2.insertDataset(Country_vaccinations)
 ```
 ## Notas
-1. En el archivo [settings](https://github.com/ParZivalT99/COVID-19-World-Vaccination-Progress-Web-app/blob/main/webapp_covid/settings.py) hay que poner una ``SECRET_KEY``
-2. Para hacer uso de la API hay que estar registrado
+1. En el archivo [settings](https://github.com/ParZivalT99/COVID-19-World-Vaccination-Progress-Web-app/blob/main/webapp_covid/settings.py) hay que poner una ``SECRET_KEY``.
+2. Para hacer uso de la Web app y la API hay que estar registrado.
 
 
 ## Referencia de API
@@ -140,7 +140,14 @@ Aplicación web sobre el progreso de la vacunación en el mundo contra el COVID-
   | `vaccine` | `str`    | **Requiere**. Nombre de un fabricante|
 
 
-
+## Resumen técnico
+- Python
+- Django
+- Django REST Framework
+- SQL
+- HTML
+- CSS
+- Bootstrap
 
 ## Autor
 - [Marcos Montes](https://github.com/ParZivalT99)
