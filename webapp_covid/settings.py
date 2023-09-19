@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from decouple import config
 from unipath import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).ancestor(2)
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "YOUR_SECRET_KEY"
+SECRET_KEY = config("SECRET_KEY",default='TEST')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -116,10 +117,18 @@ WSGI_APPLICATION = "webapp_covid.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR.child("db.sqlite3"),
-    }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config("DB_NAME",default='TEST'),
+        'USER': config("DB_USER", default='TEST'),
+        'PASSWORD': config("DB_PASS", default='TEST'),
+        'HOST': config("DB_HOST", default='0.0.0.0'),
+        'PORT': config("DB_PORT", default='8000'),
+        'OPTIONS': {
+            'options': f'''-c search_path={config("DB_SCHEMA", default='public')}''',
+        },
+
+    },
 }
 
 
@@ -160,7 +169,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR.child("staticfiles") 
+
 STATICFILES_DIRS = [BASE_DIR.child("static")]
+
+MEDIA_ROOT = BASE_DIR.child("media")
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

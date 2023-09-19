@@ -5,26 +5,22 @@ Aplicación web y API REST con autenticacion sobre el progreso de la vacunación
 > Fuente de los [dataset](https://www.kaggle.com/datasets/gpreda/covid-world-vaccination-progress?resource=download&select=country_vaccinations_by_manufacturer.csv)
 
 ## Ejecutar localmente
-1. instalar el archivo [requirements.txt](https://github.com/ParZivalT99/COVID-19-World-Vaccination-Progress-Web-app/blob/main/requirements.txt)
-3. Llenar la base de datos
-  ```
-  #Primero hacer migraciones
-  #Luego por medio del shell de django ejecutar las siguientes lineas de codigo
-  
-  >>>from applications.vaccinations_by_manufacturer.models import Vaccinations_by_manufacturer
-  >>>from applications.country_vaccinations.models import Country_vaccinations
-  >>>from dataset.dataset import Data
-  
-  >>>cl1 = Data('dataset/country_vaccinations_by_manufacturer.csv')
-  >>>cl2= Data('dataset/country_vaccinations.csv')
-
-  >>>cl1.insertDataset(Vaccinations_by_manufacturer)
-  >>>cl2.insertDataset(Country_vaccinations)
+1. Crear el archivo .env, el cual debe de tener las siguientes variables:
 ```
-## Notas
-1. En el archivo [settings](https://github.com/ParZivalT99/COVID-19-World-Vaccination-Progress-Web-app/blob/main/webapp_covid/settings.py) hay que poner una ``SECRET_KEY``.
-2. Para hacer uso de la Web app y la API hay que estar registrado.
-
+  SECRET_KEY = ''
+  DB_NAME = ''
+  DB_USER = ''
+  DB_PASS = ''
+  DB_HOST = 'db'
+  DB_PORT = '5432'
+  DB_SCHEMA = 'public'
+```
+2. Ejecutar docker-compose.yaml (https://github.com/ParZivalT99/COVID-19-World-Vaccination-Progress-Web-app/blob/main/docker-compose.yaml)
+```
+  # Ejecutar docker-compose
+  docker-compose up -d --build
+```
+3. Crear superuser
 
 ## Referencia de API
 - ### Vacunacion por pais
@@ -144,7 +140,8 @@ Aplicación web y API REST con autenticacion sobre el progreso de la vacunación
 - Python
 - Django
 - Django REST Framework
-- SQL
+- Postgres
+- Docker
 - HTML
 - CSS
 - Bootstrap
