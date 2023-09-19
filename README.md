@@ -15,7 +15,7 @@ Aplicación web y API REST con autenticacion sobre el progreso de la vacunación
   DB_PORT = '5432'
   DB_SCHEMA = 'public'
 ```
-2. Ejecutar docker-compose.yaml (https://github.com/ParZivalT99/COVID-19-World-Vaccination-Progress-Web-app/blob/main/docker-compose.yaml)
+2. Ejecutar [docker-compose.yaml](https://github.com/ParZivalT99/COVID-19-World-Vaccination-Progress-Web-app/blob/main/docker-compose.yaml)
 ```
   # Ejecutar docker-compose
   docker-compose up -d --build
