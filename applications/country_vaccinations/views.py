@@ -25,17 +25,11 @@ class HomeCountryVaccinationsView(LoginRequiredMixin, ListView):
         queryset = super(HomeCountryVaccinationsView, self).get_queryset()
         iso_code = self.request.GET.get("iso_code")
         date = self.request.GET.get("date")
-
-        if iso_code and date:
-            if queryset.filter(iso_code__iexact=iso_code, date=date):
-                queryset = queryset.filter(iso_code__iexact=iso_code, date=date)
-
-        elif iso_code:
-            if queryset.filter(iso_code__iexact=iso_code):
-                queryset = queryset.filter(iso_code__iexact=iso_code)
-
-        elif date:
-            if queryset.filter(date=date):
-                queryset = queryset.filter(date=date)
+        
+        if iso_code:
+            queryset = queryset.filter(iso_code__iexact=iso_code)
+        
+        if date:
+            queryset = queryset.filter(date=date)
 
         return queryset

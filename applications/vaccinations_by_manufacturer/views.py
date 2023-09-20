@@ -39,38 +39,13 @@ class HomeVaccinationsByManufacturerView(ListView):
         date = self.request.GET.get("date")
         vaccine = self.request.GET.get("vaccine")
 
-        if location and date and vaccine:
-            if queryset.filter(
-                location__iexact=location, date=date, vaccine__iexact=vaccine
-            ):
-                queryset = queryset.filter(
-                    location__iexact=location, date=date, vaccine__iexact=vaccine
-                )
+        if location:
+            queryset = queryset.filter(location__iexact=location)
 
-        elif location and date:
-            if queryset.filter(location__iexact=location, date=date):
-                queryset = queryset.filter(location__iexact=location, date=date)
+        if date:
+            queryset = queryset.filter(date=date)
 
-        elif location and vaccine:
-            if queryset.filter(location__iexact=location, vaccine__iexact=vaccine):
-                queryset = queryset.filter(
-                    location__iexact=location, vaccine__iexact=vaccine
-                )
-
-        elif date and vaccine:
-            if queryset.filter(date=date, vaccine__iexact=vaccine):
-                queryset = queryset.filter(date=date, vaccine__iexact=vaccine)
-
-        elif location:
-            if queryset.filter(location__iexact=location):
-                queryset = queryset.filter(location__iexact=location)
-
-        elif date:
-            if queryset.filter(date=date):
-                queryset = queryset.filter(date=date)
-
-        elif vaccine:
-            if queryset.filter(vaccine__iexact=vaccine):
-                queryset = queryset.filter(vaccine__iexact=vaccine)
+        if vaccine:
+            queryset = queryset.filter(vaccine__iexact=vaccine)
 
         return queryset
